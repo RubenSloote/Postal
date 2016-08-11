@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
+
   def index
-    @posts = Post.all
+    @posts = Post.order( created_at: :desc )
   end
+
   def create
     post_params = params.require( :post ).permit( :content )
     @post = Post.new( content: post_params[:content] )
@@ -12,4 +14,5 @@ class PostsController < ApplicationController
       render post_path
     end
   end
+
 end
